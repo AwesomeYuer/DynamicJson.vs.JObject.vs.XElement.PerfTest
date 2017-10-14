@@ -2,9 +2,9 @@
 
 对比如下三种写法
 
-1.JObject.Parse 好像最差
-2.DynamicJson 其实就是 XElement.Load
-3.JsonConvert.DeserializeXNode 转 XElement
+1. JObject.Parse 好像最差
+2. DynamicJson 其实就是 XElement.Load
+3. JsonConvert.DeserializeXNode 转 XElement
 
 全都基本是每增加 200K 报文, 增加 100毫秒解析成本
 

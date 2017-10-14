@@ -11,6 +11,8 @@
     {
         static void Main(string[] args)
         {
+
+            //下面 JSON 一坨大概 200KB, 复制粘贴一次 +200KB
             var json = @" { ""F"":
 [
 
@@ -304,6 +306,7 @@
                                             , null
                                             , () =>
                                             {
+                                                //对比测试请分别切换注释如下三坨代码
                                                 //DynamicJson vs XElement vs JObject vs JsonConvert
                                                 
                                                 //DynamicJson2 dynamicJson = DynamicJson2.Parse

@@ -11,6 +11,62 @@
     {
         static void Main(string[] args)
         {
+            var json = GetTestJson();
+            var performanceCounterCategoryName = "DynamicJson";
+            var performanceCounterCategoryInstanceName = "DynamicJsonParse";
+            CommonPerformanceCountersContainer commonPerformanceCountersContainer;
+            EasyPerformanceCountersHelper<CommonPerformanceCountersContainer>
+                .AttachPerformanceCountersCategoryInstance
+                    (
+                            performanceCounterCategoryName
+                            , performanceCounterCategoryInstanceName
+                            , out commonPerformanceCountersContainer
+                            , PerformanceCounterInstanceLifetime.Process
+                    );
+            Parallel.For
+                        (
+                            0
+                            , 10000
+                            , new ParallelOptions() {  MaxDegreeOfParallelism = 64}
+                            , (x) =>
+                            {
+
+                                EasyPerformanceCountersHelper<CommonPerformanceCountersContainer>
+                                    .TryCountPerformance
+                                        (
+                                            PerformanceCounterProcessingFlagsType.All
+                                            , performanceCounterCategoryName
+                                            , performanceCounterCategoryInstanceName
+                                            , null
+                                            , () =>
+                                            {
+                                                //对比测试请分别切换注释如下三坨代码
+                                                //DynamicJson vs XElement vs JObject vs JsonConvert
+                                                //最快
+                                                DynamicJson2 dynamicJson = DynamicJson2.Parse
+                                                                (
+                                                                    json
+                                                                );
+                                                //var v = dynamicJson["DataToComponent"]["DataToComponent"]["baseCurrCode1Arrlist"][3]["Text"];
+
+                                                //var xx = JsonConvert
+                                                //        .DeserializeXNode
+                                                //            (
+                                                //                json
+                                                //                , "root"
+                                                //            ).Elements()
+                                                //            //.First()
+                                                //            ;
+                                                //最慢
+                                                //var jObject = JObject.Parse(json);
+                                            }
+                                        );
+                            }
+                        );
+            Console.ReadLine();
+        }
+        public static string GetTestJson()
+        {
 
             //下面 JSON 一坨大概 200KB, 复制粘贴一次 +200KB
             var json = @" { ""F"":
@@ -38556,59 +38612,7 @@
 
 
 ";
-
-            var performanceCounterCategoryName = "DynamicJson";
-            var performanceCounterCategoryInstanceName = "DynamicJsonParse";
-            CommonPerformanceCountersContainer commonPerformanceCountersContainer;
-            EasyPerformanceCountersHelper<CommonPerformanceCountersContainer>
-                .AttachPerformanceCountersCategoryInstance
-                    (
-                            performanceCounterCategoryName
-                            , performanceCounterCategoryInstanceName
-                            , out commonPerformanceCountersContainer
-                            , PerformanceCounterInstanceLifetime.Process
-                    );
-            Parallel.For
-                        (
-                            0
-                            , 10000
-                            , new ParallelOptions() {  MaxDegreeOfParallelism = 64}
-                            , (x) =>
-                            {
-
-                                EasyPerformanceCountersHelper<CommonPerformanceCountersContainer>
-                                    .TryCountPerformance
-                                        (
-                                            PerformanceCounterProcessingFlagsType.All
-                                            , performanceCounterCategoryName
-                                            , performanceCounterCategoryInstanceName
-                                            , null
-                                            , () =>
-                                            {
-                                                //对比测试请分别切换注释如下三坨代码
-                                                //DynamicJson vs XElement vs JObject vs JsonConvert
-                                                //最快
-                                                DynamicJson2 dynamicJson = DynamicJson2.Parse
-                                                                (
-                                                                    json
-                                                                );
-                                                //var v = dynamicJson["DataToComponent"]["DataToComponent"]["baseCurrCode1Arrlist"][3]["Text"];
-
-                                                //var xx = JsonConvert
-                                                //        .DeserializeXNode
-                                                //            (
-                                                //                json
-                                                //                , "root"
-                                                //            ).Elements()
-                                                //            //.First()
-                                                //            ;
-                                                //最慢
-                                                //var jObject = JObject.Parse(json);
-                                            }
-                                        );
-                            }
-                        );
-            Console.ReadLine();
+            return json;
         }
     }
 }

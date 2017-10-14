@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ConsoleApp1</RootNamespace>
     <AssemblyName>ConsoleApp1</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,9 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microshaoft.Common.Utilities.NET.Framework.4.7.x, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microshaoft.Common.Utilities.NET.Framework.4.6.x, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.dll</HintPath>
+      <HintPath>refDll\Microshaoft.Common.Utilities.NET.Framework.4.6.x.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -58,11 +59,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.6.x.dll.config" />
     <None Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.dll.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\PerformanceCounter1.jpg" />
     <Content Include="Images\PerformanceCounter2.jpg" />
+    <Content Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.6.x.dll" />
+    <Content Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.6.x.pdb" />
     <Content Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.dll" />
     <Content Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.pdb" />
   </ItemGroup>

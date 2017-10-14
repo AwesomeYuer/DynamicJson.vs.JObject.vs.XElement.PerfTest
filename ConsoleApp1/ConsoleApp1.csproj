@@ -61,6 +61,8 @@
     <None Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.dll.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\PerformanceCounter1.jpg" />
+    <Content Include="Images\PerformanceCounter2.jpg" />
     <Content Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.dll" />
     <Content Include="refDll\Microshaoft.Common.Utilities.NET.Framework.4.7.x.pdb" />
   </ItemGroup>
